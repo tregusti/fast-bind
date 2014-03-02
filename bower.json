@@ -1,0 +1,30 @@
+{
+  "name": "angular-fast-bind",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kasperlewau/fast-bind",
+  "authors": [
+    "Kasper Lewau <lewauu@gmail.com>"
+  ],
+  "description": "Karl Seamon's fast-bind as a bower component",
+  "main": "index.js",
+  "keywords": [
+    "fast-bind",
+    "bind-once",
+    "fastBind",
+    "bindOnce",
+    "angular",
+    "angular-bind"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.x"
+  }
+}
