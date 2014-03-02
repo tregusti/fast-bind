@@ -16,7 +16,6 @@
     "angular-bind"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
