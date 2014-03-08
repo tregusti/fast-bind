@@ -38,6 +38,25 @@
   }]);
 
   /*
+    * Binds the attributes once to the element in question,
+    * Usage: <span bind-attr-once="{src: myExpression, title: myOtherExpression, alt: someOtherExpression}"></span>
+  */
+
+  module.directive('bindElAttrOnce', ['$parse', function ($parse) {
+    return {
+      compile: function (element, attributes) {
+        return function link(scope, element, attrs) {
+          var values = $parse(attributes.bindElAttrOnce)(scope);
+
+          angular.forEach(values, function(value, key) {
+            element[0][key] = value;
+          });
+        };
+      }
+    };
+  }]);
+
+  /*
     * Watches the specified expression, and sends a notification to its child scopes
     * when it changes.  Used in conjunction with bind-on-notify directives, it allows
     * for bindings that update only when the watcher on this element fires.
