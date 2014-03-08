@@ -15,6 +15,8 @@ Karl Seamon's fast-bind directives converted to a Bower Component.
   - `<span bind-once="some.text"></span>`
 - Attributes
   - `<span bind-attr-once="{attr1: attributes.one, attr2: attributes.two}"></span>`
+- Element Attributes
+  - `<span bind-el-attr-once="{src: someSrc, alt: someAlt, title: someTitle}"></span>`
 - Notifier
   - `<span bind-notifier="myExpression" bind-notifier-name="event-name" bind-notifier-mode="shallow|deep|collection"></span>`
 - Bind on Notify
