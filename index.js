@@ -11,8 +11,9 @@
   module.directive('bindOnce', ['$parse', function ($parse) {
     return {
       compile: function (element, attributes) {
+        var expr = $parse(attributes.bindOnce);
         return function link(scope, element) {
-          element.text($parse(attributes.bindOnce)(scope));
+          element.text(expr(scope));
         };
       }
     };
@@ -26,11 +27,12 @@
   module.directive('bindAttrOnce', ['$parse', function ($parse) {
     return {
       compile: function (element, attributes) {
+        var expr = $parse(attributes.bindAttrOnce);
         return function link(scope, element, attrs) {
-          var values = $parse(attributes.bindAttrOnce)(scope);
+          var values = expr(scope);
 
           angular.forEach(values, function(value, key) {
-            attributes.$set(key, value);
+            attrs.$set(key, value);
           });
         };
       }
@@ -45,8 +47,9 @@
   module.directive('bindElAttrOnce', ['$parse', function ($parse) {
     return {
       compile: function (element, attributes) {
+        var expr = $parse(attributes.bindElAttrOnce);
         return function link(scope, element, attrs) {
-          var values = $parse(attributes.bindElAttrOnce)(scope);
+          var values = expr(scope);
 
           angular.forEach(values, function(value, key) {
             element[0][key] = value;
