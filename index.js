@@ -20,6 +20,22 @@
   }]);
 
   /*
+    * Binds to the expression once at startup - html safe,
+    * Usage: <span bind-html-once="myExpression"></span>
+  */
+
+  module.directive('bindHtmlOnce', ['$parse', '$sanitize', function ($parse, $sanitize) {
+    return {
+      compile: function (element, attributes) {
+        var expr = $parse(attributes.bindHtmlOnce);
+        return function link(scope, element) {
+          element.html($sanitize(expr(scope)));
+        };
+      }
+    };
+  }]);
+
+  /*
     * Binds the attributes to the expression once at startup,
     * Usage: <span bind-attr-once="{attr1: myExpression, attr2: myOtherExpression}"></span>
   */
@@ -87,7 +103,7 @@
   }]);
 
   /*
-    * Binds the to the expression, dirty-checking and updating only when notified on the specified event-name,
+    * Binds to the expression, dirty-checking and updating only when notified on the specified event-name,
     * Usage: <span bind-on-notify="myExpression"
     *              bind-on-notify-name="event-name"</span>
   */
@@ -114,6 +130,35 @@
         };
       }
     };
+  }]);
+
+  /*
+    * Binds to the expression - html safe, dirty-checking and updating only when notified on the specified event-name,
+    * Usage: <span bind-html-on-notify="myExpression"
+    *              bind-html-on-notify-name="event-name"</span>
+  */
+
+  module.directive('bindHtmlOnNotify', ['$parse', '$sanitize', function ($parse, $sanitize) {
+    var DEFAULT_EVENT_NAME = 'bind-notify';
+
+    return {
+      compile: function (element, attributes) {
+        var expr = $parse(attributes.bindHtmlOnNotify),
+            name = attributes.bindOnNotifyName || DEFAULT_EVENT_NAME;
+
+        return function link(scope, element, attrs) {
+          var lastValue;
+          scope.$on(name, function () {
+            var value = expr(scope);
+
+            if (value !== lastValue) {
+              element.html($sanitize(value));
+            }
+            lastValue = value;
+          });
+        }
+      }
+    }
   }]);
 
   /*
