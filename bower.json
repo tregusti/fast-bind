@@ -1,6 +1,6 @@
 {
   "name": "angular-fast-bind",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "homepage": "https://github.com/kasperlewau/fast-bind",
   "authors": [
     "Kasper Lewau <lewauu@gmail.com>"
@@ -24,6 +24,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.x"
+    "angular": ">1.2.0"
   }
 }
